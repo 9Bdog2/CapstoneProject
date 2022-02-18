@@ -1,9 +1,11 @@
 import React from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { useState } from "react";
+import { Nav } from "react-bootstrap";
+import Home from "./Home";
 
 const containerStyle = {
-  width: "100vh",
+  width: "204vh",
   height: "95vh",
 };
 
@@ -31,16 +33,19 @@ function Maps() {
   }, []);
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {/* Child components, such as markers, info windows, etc. */}
-      <></>
-    </GoogleMap>
+    <>
+      <Home />
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {/* Child components, such as markers, info windows, etc. */}
+        <></>
+      </GoogleMap>
+    </>
   ) : (
     <></>
   );

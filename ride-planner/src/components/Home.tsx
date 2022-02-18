@@ -7,13 +7,17 @@ class Home extends Component {
       <div>
         <Nav defaultActiveKey="/home" as="ul" className="bg-dark">
           <Nav.Item as="li">
-            <Nav.Link href="/home">Logo</Nav.Link>
+            <Nav.Link href="/">Logo</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-1">Maps</Nav.Link>
+            <Nav.Link eventKey="link-1" href="/maps">
+              Maps
+            </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-2">Calendar</Nav.Link>
+            <Nav.Link eventKey="link-2" href="/calendar">
+              Calendar
+            </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
             <Nav.Link eventKey="link-2">Log-in</Nav.Link>
