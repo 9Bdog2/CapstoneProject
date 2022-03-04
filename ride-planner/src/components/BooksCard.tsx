@@ -1,6 +1,6 @@
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-interface IProps {
+export interface IProps {
   books: any;
 }
 
@@ -10,7 +10,7 @@ const BooksCard = ({ books }: IProps) => {
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
         <Card.Title>{books.name}</Card.Title>
-        <Card.Text>{books.authors[0]}</Card.Text>
+        <Card.Text>{/* {books.authors[0]} */}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroupItem>{books.country}</ListGroupItem>
@@ -22,7 +22,6 @@ const BooksCard = ({ books }: IProps) => {
       </ListGroup>
       <Card.Body>
         <Card.Link href="#">{books.url}</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
       </Card.Body>
     </Card>
   );
