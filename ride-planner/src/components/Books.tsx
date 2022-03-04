@@ -1,21 +1,35 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import Home from "./Home";
+import BooksCard from "./BooksCard";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
 
+  const fetchedBooks = async () => {
+    try {
+      const response = await fetch(
+        "https://www.anapioficeandfire.com/api/books"
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setBooks(data);
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    fetch("https://www.anapioficeandfire.com/api/books")
-      .then((response) => response.json())
-      .then((data) => setBooks(data));
-    console.log(books);
+    fetchedBooks();
   }, []);
 
   return (
     <div>
       <Home />
-      <h1>Books</h1>
+      {books.map((book) => {
+        <BooksCard books={books} />;
+      })}
     </div>
   );
 };
