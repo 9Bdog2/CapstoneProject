@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   render() {
@@ -10,12 +11,12 @@ class Home extends Component {
             <Nav.Link href="/">Homepage</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-1" href="/maps">
-              Books
-            </Nav.Link>
+            <Link to="/books">
+              <div className="nav-link">Books</div>
+            </Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-2" href="/calendar">
+            <Nav.Link eventKey="link-2" href="/houses">
               Houses
             </Nav.Link>
           </Nav.Item>

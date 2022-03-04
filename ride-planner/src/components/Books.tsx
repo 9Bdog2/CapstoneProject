@@ -30,7 +30,7 @@ const Books = () => {
       <div className="container">
         <div className="row">
           {books.map((book) => (
-            <BooksCard books={books} key={book.isbn} />
+            <BooksCard book={book} /* key={book.isbn} */ />
           ))}
         </div>
       </div>

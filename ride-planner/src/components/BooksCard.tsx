@@ -1,27 +1,28 @@
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { IBook } from "../types/IBook";
 
 export interface IProps {
-  books: any;
+  book: IBook;
 }
 
-const BooksCard = ({ books }: IProps) => {
+const BooksCard = ({ book }: IProps) => {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card.Img variant="top" src="" />
       <Card.Body>
-        <Card.Title>{books.name}</Card.Title>
-        <Card.Text>{/* {books.authors[0]} */}</Card.Text>
+        <Card.Title>{book.name}</Card.Title>
+        <Card.Text>{book.authors[0]}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroupItem>{books.country}</ListGroupItem>
-        <ListGroupItem>{books.isbn}</ListGroupItem>
-        <ListGroupItem>{books.mediaType}</ListGroupItem>
-        <ListGroupItem>{books.numberOfPages}</ListGroupItem>
-        <ListGroupItem>{books.publisher}</ListGroupItem>
-        <ListGroupItem>{books.released}</ListGroupItem>
+        <ListGroupItem>{book.country}</ListGroupItem>
+        <ListGroupItem>{book.isbn}</ListGroupItem>
+        <ListGroupItem>{book.mediaType}</ListGroupItem>
+        <ListGroupItem>{book.numberOfPages}</ListGroupItem>
+        <ListGroupItem>{book.publisher}</ListGroupItem>
+        <ListGroupItem>{book.released}</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link href="#">{books.url}</Card.Link>
+        <Card.Link href="#">{book.url}</Card.Link>
       </Card.Body>
     </Card>
   );
