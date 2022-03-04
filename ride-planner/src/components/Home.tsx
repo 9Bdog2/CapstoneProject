@@ -16,14 +16,14 @@ class Home extends Component {
             </Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-2" href="/houses">
-              Houses
-            </Nav.Link>
+            <Link to="/houses">
+              <div className="nav-link">Houses</div>
+            </Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link eventKey="link-2" href="/calendar">
-              Characters
-            </Nav.Link>
+            <Link to="/characters">
+              <div className="nav-link">Characters</div>
+            </Link>
           </Nav.Item>
         </Nav>
       </div>
