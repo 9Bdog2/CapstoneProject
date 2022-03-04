@@ -1,8 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
-import Maps from "./components/Maps";
-import Calendar from "./components/Calendar";
+import Books from "./components/Books";
+import Houses from "./components/Houses";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/maps" element={<Maps />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/houses" element={<Houses />} />
         </Routes>
       </div>
     </BrowserRouter>

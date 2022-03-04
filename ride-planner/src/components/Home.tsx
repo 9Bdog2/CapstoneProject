@@ -11,12 +11,17 @@ class Home extends Component {
           </Nav.Item>
           <Nav.Item as="li">
             <Nav.Link eventKey="link-1" href="/maps">
-              Maps
+              Books
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
             <Nav.Link eventKey="link-2" href="/calendar">
-              Calendar
+              Houses
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li">
+            <Nav.Link eventKey="link-2" href="/calendar">
+              Characters
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
