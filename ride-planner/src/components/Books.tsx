@@ -29,8 +29,8 @@ const Books = () => {
       <Home />
       <div className="container">
         <div className="row">
-          {books.map((book) => (
-            <BooksCard book={book} /* key={book.isbn} */ />
+          {books.map((book, index) => (
+            <BooksCard book={book} key={index} />
           ))}
         </div>
       </div>

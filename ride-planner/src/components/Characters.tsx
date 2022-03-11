@@ -29,8 +29,8 @@ const Characters = () => {
       <Home />
       <div className="container">
         <div className="row">
-          {characters.map((character) => (
-            <CharacterCard character={character} /* key={characters.isbn} */ />
+          {characters.map((character, index) => (
+            <CharacterCard character={character} key={index} />
           ))}
         </div>
       </div>

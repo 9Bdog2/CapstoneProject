@@ -29,8 +29,8 @@ const Houses = () => {
       <Home />
       <div className="container">
         <div className="row">
-          {houses.map((house) => (
-            <HouseCard house={house} /* key={characters.isbn} */ />
+          {houses.map((house, index) => (
+            <HouseCard house={house} key={index} />
           ))}
         </div>
       </div>

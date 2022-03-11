@@ -10,23 +10,25 @@ const CharacterCard = ({ house }: IProps) => {
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src="" />
       <Card.Body>
-        <Card.Title>{house.name}</Card.Title>
+        <Card.Title>House Name: {house.name}</Card.Title>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroupItem>{house.region}</ListGroupItem>
-        <ListGroupItem>{house.coatOfArms}</ListGroupItem>
-        <ListGroupItem>{house.words}</ListGroupItem>
-        <ListGroupItem>{house.titles}</ListGroupItem>
-        <ListGroupItem>{house.seats}</ListGroupItem>
-        <ListGroupItem>{house.currentLord}</ListGroupItem>
-        <ListGroupItem>{house.heir}</ListGroupItem>
-        <ListGroupItem>{house.overlord}</ListGroupItem>
-        <ListGroupItem>{house.founded}</ListGroupItem>
-        <ListGroupItem>{house.founder}</ListGroupItem>
-        <ListGroupItem>{house.diedOut}</ListGroupItem>
-        <ListGroupItem>{house.ancestralWeapons}</ListGroupItem>
-        <ListGroupItem>{house.cadetBranches}</ListGroupItem>
-        <ListGroupItem>{house.swornMembers}</ListGroupItem>
+        <ListGroupItem>House region:{house.region}</ListGroupItem>
+        <ListGroupItem>House coatOfArms:{house.coatOfArms}</ListGroupItem>
+        <ListGroupItem>House words:{house.words}</ListGroupItem>
+        <ListGroupItem>House titles:{house.titles}</ListGroupItem>
+        <ListGroupItem>House seats:{house.seats}</ListGroupItem>
+        <ListGroupItem>House currentLord:{house.currentLord}</ListGroupItem>
+        <ListGroupItem>House heir:{house.heir}</ListGroupItem>
+        <ListGroupItem>House overlord:{house.overlord}</ListGroupItem>
+        <ListGroupItem>House founded:{house.founded}</ListGroupItem>
+        <ListGroupItem>House founder:{house.founder}</ListGroupItem>
+        <ListGroupItem>House diedOut:{house.diedOut}</ListGroupItem>
+        <ListGroupItem>
+          House ancestralWeapons:{house.ancestralWeapons}
+        </ListGroupItem>
+        <ListGroupItem>House cadetBranches:{house.cadetBranches}</ListGroupItem>
+        <ListGroupItem>House swornMembers:{house.swornMembers}</ListGroupItem>
       </ListGroup>
       <Card.Body>
         <Card.Link href="#">{house.url}</Card.Link>

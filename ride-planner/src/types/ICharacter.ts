@@ -6,6 +6,7 @@ export interface ICharacter {
   died: string;
   titles: string[];
   aliases: string[];
+  gender: string;
   father: string;
   mother: string;
   spouse: string;
@@ -15,3 +16,4 @@ export interface ICharacter {
   tvSeries: string[];
   playedBy: string[];
 }
+
