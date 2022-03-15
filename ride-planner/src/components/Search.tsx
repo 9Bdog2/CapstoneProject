@@ -1,6 +1,9 @@
 import Home from "./Home";
 import { useState, useEffect } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
+import { IBook } from "../types/IBook";
+import { ICharacter } from "../types/ICharacter";
+import { IHouse } from "../types/IHouse";
 /* import { IBook } from "../types/IBook"; */
 
 /* export interface IProps {
@@ -9,10 +12,12 @@ import { InputGroup, FormControl } from "react-bootstrap";
 
 const Search = (/* { book }: IProps */) => {
   const [query, setQuery] = useState<string>("");
-  const [books, setBooks] = useState<string[]>([]);
-  const [characters, setCharacters] = useState<string[]>([]);
-  const [houses, setHouses] = useState<string[]>([]);
-  const [bigData, setBigData] = useState<string[]>([]);
+  const [books, setBooks] = useState<IBook[]>([]);
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
+  const [houses, setHouses] = useState<IHouse[]>([]);
+  const [bigData, setBigData] = useState<Array<IBook | ICharacter | IHouse>>(
+    []
+  );
 
   const fetchedBooks = async () => {
     try {
@@ -62,7 +67,6 @@ const Search = (/* { book }: IProps */) => {
   /* setBigData([...books, ...characters, ...houses]);
   console.log(bigData);
  */
-
   useEffect(() => {
     fetchedBooks();
     fetchedCharacters();
@@ -92,7 +96,7 @@ const Search = (/* { book }: IProps */) => {
               {books
                 .filter((book) => {
                   if (query === "") {
-                    return <p>Please enter a search term</p>;
+                    return "";
                   } else if (
                     book.name.toLowerCase().includes(query.toLowerCase())
                   ) {
@@ -102,7 +106,7 @@ const Search = (/* { book }: IProps */) => {
                 .map((book, index) => (
                   <div key={index}>
                     <p>
-                      {book.name} : {book.authors}
+                      Name: {book.name} - Author : {book.authors}
                     </p>
                   </div>
                 ))}

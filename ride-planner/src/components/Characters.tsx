@@ -4,11 +4,14 @@ import CharacterCard from "./CharacterCard";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
+  const [page, setPage] = useState(1);
 
   const fetchedCharacters = async () => {
     try {
       const response = await fetch(
-        "https://www.anapioficeandfire.com/api/characters?page=1&pageSize=50"
+        "https://www.anapioficeandfire.com/api/characters?page=" +
+          page +
+          "&pageSize=50"
       );
       if (response.ok) {
         const data = await response.json();
@@ -22,7 +25,7 @@ const Characters = () => {
 
   useEffect(() => {
     fetchedCharacters();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -34,6 +37,8 @@ const Characters = () => {
           ))}
         </div>
       </div>
+      <button onClick={() => setPage(page - 1)}>PREV</button>
+      <button onClick={() => setPage(page + 1)}>NEXT</button>
     </div>
   );
 };

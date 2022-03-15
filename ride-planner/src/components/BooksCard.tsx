@@ -10,16 +10,18 @@ const BooksCard = ({ book }: IProps) => {
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src="" />
       <Card.Body>
-        <Card.Title>{book.name}</Card.Title>
-        <Card.Text>{book.authors[0]}</Card.Text>
+        {book.name && <Card.Title>{book.name}</Card.Title>}
+        {book.authors && <Card.Text>{book.authors[0]}</Card.Text>}
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroupItem>{book.country}</ListGroupItem>
-        <ListGroupItem>{book.isbn}</ListGroupItem>
-        <ListGroupItem>{book.mediaType}</ListGroupItem>
-        <ListGroupItem>{book.numberOfPages}</ListGroupItem>
-        <ListGroupItem>{book.publisher}</ListGroupItem>
-        <ListGroupItem>{book.released}</ListGroupItem>
+        {book.country && <ListGroupItem>{book.country}</ListGroupItem>}
+        {book.isbn && <ListGroupItem>{book.isbn}</ListGroupItem>}
+        {book.mediaType && <ListGroupItem>{book.mediaType}</ListGroupItem>}
+        {book.numberOfPages && (
+          <ListGroupItem>{book.numberOfPages}</ListGroupItem>
+        )}
+        {book.publisher && <ListGroupItem>{book.publisher}</ListGroupItem>}
+        {book.released && <ListGroupItem>{book.released}</ListGroupItem>}
       </ListGroup>
       <Card.Body>
         <Card.Link href="#">{book.url}</Card.Link>
