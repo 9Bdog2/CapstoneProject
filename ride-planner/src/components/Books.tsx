@@ -8,7 +8,7 @@ const Books = () => {
   const fetchedBooks = async () => {
     try {
       const response = await fetch(
-        "https://www.anapioficeandfire.com/api/books"
+        "https://www.anapioficeandfire.com/api/books?page=1&pageSize=50"
       );
       if (response.ok) {
         const data = await response.json();

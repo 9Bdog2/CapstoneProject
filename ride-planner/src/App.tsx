@@ -6,6 +6,7 @@ import Houses from "./components/Houses";
 import Video from "./components/Video";
 import Characters from "./components/Characters";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Search from "./components/Search";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/houses" element={<Houses />} />
           <Route path="/characters" element={<Characters />} />
+          <Route path="/search" element={<Search /> } />
         </Routes>
       </div>
     </BrowserRouter>

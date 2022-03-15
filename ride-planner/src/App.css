@@ -54,3 +54,20 @@
   position: absolute;
 }
 /*----------------------------------------*/
+
+/*--------------- Search Component -------*/
+.search-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box-search-area {
+  text-align: left;
+  border: black ridge 1px;
+  border-radius: 10px;
+  margin: 3px;
+  width: 20rem;
+  padding-left: 10px;
+}
+/*----------------------------------------*/

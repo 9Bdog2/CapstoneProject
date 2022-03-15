@@ -8,7 +8,7 @@ const Houses = () => {
   const fetchedHouses = async () => {
     try {
       const response = await fetch(
-        "https://www.anapioficeandfire.com/api/houses"
+        "https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50"
       );
       if (response.ok) {
         const data = await response.json();

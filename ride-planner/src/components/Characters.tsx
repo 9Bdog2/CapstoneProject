@@ -8,7 +8,7 @@ const Characters = () => {
   const fetchedCharacters = async () => {
     try {
       const response = await fetch(
-        "https://www.anapioficeandfire.com/api/characters"
+        "https://www.anapioficeandfire.com/api/characters?page=1&pageSize=50"
       );
       if (response.ok) {
         const data = await response.json();
