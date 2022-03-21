@@ -4,13 +4,8 @@ import { InputGroup, FormControl } from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { ICharacter } from "../types/ICharacter";
 import { IHouse } from "../types/IHouse";
-/* import { IBook } from "../types/IBook"; */
 
-/* export interface IProps {
-  book: IBook;
-} */
-
-const Search = (/* { book }: IProps */) => {
+const Search = () => {
   const [query, setQuery] = useState<string>("");
   const [books, setBooks] = useState<IBook[]>([]);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -64,13 +59,16 @@ const Search = (/* { book }: IProps */) => {
     }
   };
 
-  /* setBigData([...books, ...characters, ...houses]);
-  console.log(bigData);
- */
+  const fetchedBigData = () => {
+    setBigData([...books, ...characters, ...houses]);
+    console.log(bigData);
+  };
+
   useEffect(() => {
     fetchedBooks();
     fetchedCharacters();
     fetchedHouses();
+    fetchedBigData();
   }, []);
 
   return (
@@ -92,25 +90,22 @@ const Search = (/* { book }: IProps */) => {
         </div>
         <div className="row">
           <div className="col-md-12 mt-5 search-area">
-            <div className="box-search-area">
-              {books
-                .filter((book) => {
-                  if (query === "") {
-                    return "";
-                  } else if (
-                    book.name.toLowerCase().includes(query.toLowerCase())
-                  ) {
-                    return book;
-                  }
-                })
-                .map((book, index) => (
-                  <div key={index}>
-                    <p>
-                      Name: {book.name} - Author : {book.authors}
-                    </p>
-                  </div>
-                ))}
-            </div>
+            {books
+              .filter((data) => {
+                if (query === "") {
+                  return "";
+                } else if (
+                  data.name.toLowerCase().includes(query.toLowerCase())
+                ) {
+                  return data;
+                }
+              })
+              .map((data, index) => (
+                <div key={index} className="box-search-content">
+                  <p>Name: {data.name}</p>
+                  <p>URL: {data.url}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>

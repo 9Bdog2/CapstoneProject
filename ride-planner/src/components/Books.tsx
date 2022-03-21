@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Home from "./Home";
 import BooksCard from "./BooksCard";
+import { IBook } from "../types/IBook";
 
 const Books = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<IBook[]>([]);
 
   const fetchedBooks = async () => {
     try {
@@ -11,7 +12,7 @@ const Books = () => {
         "https://www.anapioficeandfire.com/api/books?page=1&pageSize=50"
       );
       if (response.ok) {
-        const data = await response.json();
+        const data: IBook[] = await response.json();
         setBooks(data);
         console.log(data);
       }

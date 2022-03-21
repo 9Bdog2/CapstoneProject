@@ -30,6 +30,11 @@ class Home extends Component {
               <div className="nav-link">Search</div>
             </Link>
           </Nav.Item>
+          <Nav.Item as="li">
+            <Link to="/favourites">
+              <div className="nav-link">Favourites</div>
+            </Link>
+          </Nav.Item>
         </Nav>
       </div>
     );
