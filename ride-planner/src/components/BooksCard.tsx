@@ -8,28 +8,35 @@ import { InitialState } from "../store";
 
 export interface IProps {
   book: IBook;
-  favourites: { data: IBook[] };
+  favouriteData: IBook[];
   addToFavourites: any;
   removeFromFavourites: any;
 }
 
-const mapStateToProps = (s: InitialState) => s;
+const mapStateToProps = (state: InitialState) => ({
+  favouriteData: state.favourites.data,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addToFavourites: ({ book }: IProps) => dispatch(addToFav(book)),
-  removeFromFavourites: ({ book }: IProps) => dispatch(removeFromFav(book)),
+  addToFavourites: (book: IBook) => dispatch(addToFav(book)),
+  removeFromFavourites: (book: IBook) => dispatch(removeFromFav(book)),
 });
 
 const BooksCard = ({
   book,
-  favourites,
+  favouriteData,
   addToFavourites,
   removeFromFavourites,
 }: IProps) => {
-  const isFav = favourites.data.includes(book);
-  console.log(isFav, favourites);
-  const toggleFavourite = () => {
-    isFav ? removeFromFavourites(book) : addToFavourites(book);
+  const hasFavs = favouriteData.length > 0 ? true : false;
+  let isFav = 0;
+  if (hasFavs) {
+    isFav = favouriteData.filter((lib) => lib.isbn === book.isbn).length;
+  }
+  console.log(isFav, favouriteData);
+  const toggleFavourite = (book: IBook) => {
+    isFav > 0 ? removeFromFavourites(book) : addToFavourites(book);
+    console.log(book);
   };
 
   return (
@@ -43,14 +50,14 @@ const BooksCard = ({
                 color="gold"
                 size={20}
                 className="me-4 my-auto"
-                onClick={toggleFavourite}
+                onClick={(e) => toggleFavourite(book)}
               />
             ) : (
               <Star
                 color="gold"
                 size={20}
                 className="me-4 my-auto"
-                onClick={toggleFavourite}
+                onClick={(e) => toggleFavourite(book)}
               />
             )}
           </Col>
