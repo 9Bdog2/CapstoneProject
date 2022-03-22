@@ -59,7 +59,7 @@ const Search = () => {
     }
   };
 
-  const fetchedBigData = () => {
+  const addBigData = () => {
     setBigData([...books, ...characters, ...houses]);
     console.log(bigData);
   };
@@ -68,7 +68,7 @@ const Search = () => {
     fetchedBooks();
     fetchedCharacters();
     fetchedHouses();
-    fetchedBigData();
+    addBigData();
   }, []);
 
   return (

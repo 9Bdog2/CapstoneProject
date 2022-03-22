@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Home from "./Home";
 import BooksCard from "./BooksCard";
-import { IBook } from "../types/IBook";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -13,7 +12,10 @@ const Books = () => {
   const fetchedBooks = async () => {
     try {
       const response = await fetch(
-        "https://www.anapioficeandfire.com/api/books?page=" + page + "&pageSize=" + (perPage + 1)
+        "https://www.anapioficeandfire.com/api/books?page=" +
+          page +
+          "&pageSize=" +
+          (perPage + 1)
       );
       if (response.ok) {
         const data = await response.json();
@@ -27,9 +29,9 @@ const Books = () => {
   };
 
   const scrollTop = () => {
-    const body = document.querySelector('#root');
-    body?.scrollIntoView({behavior: 'smooth'});
-  }
+    const body = document.querySelector("#root");
+    body?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     fetchedBooks();
@@ -46,8 +48,15 @@ const Books = () => {
         </div>
         <div className="col-12 py-2">
           <h6>Page {page}</h6>
-          <button disabled={page == 1} onClick={() => setPage(page > 0 ? page - 1 : 1)}>PREV</button>
-          <button disabled={!hasMore} onClick={() => setPage(page + 1)}>NEXT</button>
+          <button
+            disabled={page == 1}
+            onClick={() => setPage(page > 0 ? page - 1 : 1)}
+          >
+            PREV
+          </button>
+          <button disabled={!hasMore} onClick={() => setPage(page + 1)}>
+            NEXT
+          </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Col } from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { addToFav, removeFromFav } from "../store/actions";
@@ -8,7 +8,7 @@ import { InitialState } from "../store";
 
 export interface IProps {
   book: IBook;
-  favourites: {data: IBook[]};
+  favourites: { data: IBook[] };
   addToFavourites: any;
   removeFromFavourites: any;
 }
@@ -34,9 +34,26 @@ const BooksCard = ({
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2">
-      <Card style={{height: "100%"}}>
+      <Card style={{ height: "100%" }}>
         <Card.Img variant="top" src="" />
         <Card.Body>
+          <Col xs={3} className="d-flex">
+            {isFav ? (
+              <StarFill
+                color="gold"
+                size={20}
+                className="me-4 my-auto"
+                onClick={toggleFavourite}
+              />
+            ) : (
+              <Star
+                color="gold"
+                size={20}
+                className="me-4 my-auto"
+                onClick={toggleFavourite}
+              />
+            )}
+          </Col>
           {book.name && <Card.Title>{book.name}</Card.Title>}
           {book.authors && <Card.Text>{book.authors[0]}</Card.Text>}
         </Card.Body>
