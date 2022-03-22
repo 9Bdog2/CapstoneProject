@@ -22,6 +22,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setBooks(data);
+        setBigData(data);
         console.log(data);
       }
     } catch (error) {
@@ -59,9 +60,9 @@ const Search = () => {
     }
   };
 
-  const fetchedBigData = () => {
+  const fetchedBigData = async () => {
     setBigData([...books, ...characters, ...houses]);
-    console.log(bigData);
+    console.log("Big array : ", bigData);
   };
 
   useEffect(() => {
@@ -90,7 +91,7 @@ const Search = () => {
         </div>
         <div className="row">
           <div className="col-md-12 mt-5 search-area">
-            {books
+            {bigData
               .filter((data) => {
                 if (query === "") {
                   return "";
@@ -103,7 +104,9 @@ const Search = () => {
               .map((data, index) => (
                 <div key={index} className="box-search-content">
                   <p>Name: {data.name}</p>
-                  <p>URL: {data.url}</p>
+                  <a href={data.url}>
+                    <p>URL: {data.url}</p>
+                  </a>
                 </div>
               ))}
           </div>
