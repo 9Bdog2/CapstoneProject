@@ -8,20 +8,22 @@ export interface IProps {
 const CharacterCard = ({ character }: IProps) => {
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2">
-      <Card style={{height: "100%"}}>
+      <Card style={{ height: "100%" }}>
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>Character Aliases : {character.aliases}</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          {character.name && (
+          {character.name !== "" && (
             <ListGroupItem>Character Name : {character.name}</ListGroupItem>
           )}
-          {character.gender && (
+          {character.gender !== "" && (
             <ListGroupItem>Character Gender : {character.gender}</ListGroupItem>
           )}
-          {character.culture && (
-            <ListGroupItem>Character Culture :{character.culture}</ListGroupItem>
+          {character.culture !== "" && (
+            <ListGroupItem>
+              Character Culture :{character.culture}
+            </ListGroupItem>
           )}
           {character.born && (
             <ListGroupItem>Character Born : {character.born}</ListGroupItem>

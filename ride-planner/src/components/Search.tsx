@@ -59,17 +59,16 @@ const Search = () => {
     }
   };
 
-  const addBigData = () => {
-    setBigData([...books, ...characters, ...houses]);
-    console.log(bigData);
-  };
-
   useEffect(() => {
     fetchedBooks();
     fetchedCharacters();
     fetchedHouses();
-    addBigData();
   }, []);
+
+  useEffect(() => {
+    setBigData([...books, ...characters, ...houses]);
+    console.log(bigData);
+  }, [books, characters, houses]);
 
   return (
     <div>
@@ -90,7 +89,7 @@ const Search = () => {
         </div>
         <div className="row">
           <div className="col-md-12 mt-5 search-area">
-            {books
+            {bigData
               .filter((data) => {
                 if (query === "") {
                   return "";
