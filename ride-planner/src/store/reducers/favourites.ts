@@ -6,6 +6,7 @@ export default function favouritesReducer(
   action: AnyAction
 ) {
   console.log(action, state);
+  console.log("Payload! : ", action.payload);
   switch (action.type) {
     case "ADD_TO_FAV":
       return {

@@ -11,6 +11,7 @@ import Search from "./components/Search";
 import store from "./store";
 import { Provider } from "react-redux";
 
+
 function App() {
   return (
     <Provider store={store}>
@@ -30,7 +31,7 @@ function App() {
             <Route path="/houses" element={<Houses />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/favourites" element={<Favourites />} />
+            <Route path="/favourites" element={<Favourites />}  />
           </Routes>
         </div>
       </BrowserRouter>
