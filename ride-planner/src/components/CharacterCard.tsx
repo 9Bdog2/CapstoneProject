@@ -25,10 +25,10 @@ const CharacterCard = ({ character }: IProps) => {
               Character Culture :{character.culture}
             </ListGroupItem>
           )}
-          {character.born && (
+          {character.born !== "" && (
             <ListGroupItem>Character Born : {character.born}</ListGroupItem>
           )}
-          {character.died && (
+          {character.died !== "" && (
             <ListGroupItem>Character Died : {character.died}</ListGroupItem>
           )}
           {character.titles && (
@@ -65,7 +65,7 @@ const CharacterCard = ({ character }: IProps) => {
           )}
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">{character.url}</Card.Link>
+          <Card.Link href={character.url}>{character.url}</Card.Link>
         </Card.Body>
       </Card>
     </div>

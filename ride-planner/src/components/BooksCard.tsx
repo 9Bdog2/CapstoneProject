@@ -61,21 +61,27 @@ const BooksCard = ({
               />
             )}
           </Col>
-          {book.name && <Card.Title>{book.name}</Card.Title>}
+          {book.name !== "" && <Card.Title>{book.name}</Card.Title>}
           {book.authors && <Card.Text>{book.authors[0]}</Card.Text>}
         </Card.Body>
         <ListGroup className="list-group-flush">
-          {book.country && <ListGroupItem>{book.country}</ListGroupItem>}
-          {book.isbn && <ListGroupItem>{book.isbn}</ListGroupItem>}
-          {book.mediaType && <ListGroupItem>{book.mediaType}</ListGroupItem>}
+          {book.country !== "" && <ListGroupItem>{book.country}</ListGroupItem>}
+          {book.isbn !== "" && <ListGroupItem>{book.isbn}</ListGroupItem>}
+          {book.mediaType !== "" && (
+            <ListGroupItem>{book.mediaType}</ListGroupItem>
+          )}
           {book.numberOfPages && (
             <ListGroupItem>{book.numberOfPages}</ListGroupItem>
           )}
-          {book.publisher && <ListGroupItem>{book.publisher}</ListGroupItem>}
-          {book.released && <ListGroupItem>{book.released}</ListGroupItem>}
+          {book.publisher !== "" && (
+            <ListGroupItem>{book.publisher}</ListGroupItem>
+          )}
+          {book.released !== "" && (
+            <ListGroupItem>{book.released}</ListGroupItem>
+          )}
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">{book.url}</Card.Link>
+          <Card.Link href={book.url}>{book.url}</Card.Link>
         </Card.Body>
       </Card>
     </div>
