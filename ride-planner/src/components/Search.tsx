@@ -22,7 +22,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setBooks(data);
-        console.log(data);
+        console.log("Books", data);
       }
     } catch (error) {
       console.log(error);
@@ -37,7 +37,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setCharacters(data);
-        console.log(data);
+        console.log("Characters", data);
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +52,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setHouses(data);
-        console.log(data);
+        console.log("Houses", data);
       }
     } catch (error) {
       console.log(error);
@@ -67,7 +67,7 @@ const Search = () => {
 
   useEffect(() => {
     setBigData([...books, ...characters, ...houses]);
-    console.log(bigData);
+    console.log("All of them", bigData);
   }, [books, characters, houses]);
 
   return (
