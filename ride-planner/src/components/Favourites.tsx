@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { removeFromFav } from "../store/actions";
 import { IBook } from "../types/IBook";
-import { IProps } from "./BooksCard";
 import { StarFill } from "react-bootstrap-icons";
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -13,8 +12,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const Favourites = ({ book }: any) => {
-  console.log("BOOK IS", book); // book is undefined
+const Favourites = (data: any) => {
+  const books: IBook[] = data && data.favourites ? data.favourites.data : [];
+  console.log("BOOK IS", books); // book is undefined
 
   return (
     <>
@@ -24,12 +24,17 @@ const Favourites = ({ book }: any) => {
           <Col xs={12}>
             <ListGroup>Favourites</ListGroup>
             <ListGroup>
-              {/*  {book.map((book: IBook) => (
-                <ListGroupItem>
-                  <StarFill onClick={() => removeFromFav(book)} />
-                  <span>{book}</span>
+              {books.map((book: IBook, i: number) => (
+                <ListGroupItem key={i}>
+                  <StarFill
+                    color="gold"
+                    size={20}
+                    className="me-4 my-auto"
+                    onClick={() => removeFromFav(book)}
+                  />
+                  <span>{book.name}</span>
                 </ListGroupItem>
-              ))} */}
+              ))}
             </ListGroup>
           </Col>
         </Row>
