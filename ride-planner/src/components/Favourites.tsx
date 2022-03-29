@@ -1,0 +1,54 @@
+import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import Home from "./Home";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { removeFromFav } from "../store/actions";
+import { IBook } from "../types/IBook";
+import { StarFill } from "react-bootstrap-icons";
+
+export interface IProps {
+  book: IBook;
+  favouriteData: IBook[];
+  addToFavourites: any;
+  removeFromFavourites: any;
+  data: any;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  removeFromFav: (book: IBook) => {
+    dispatch(removeFromFav(book));
+  },
+});
+
+const Favourites = (data: any) => {
+  const books: IBook[] = data && data.favourites ? data.favourites.data : [];
+  console.log("BOOK IS", books); // book is undefined
+
+  return (
+    <>
+      <Home />
+      <Container>
+        <Row>
+          <Col xs={12}>
+            <ListGroup>Favourites</ListGroup>
+            <ListGroup>
+              {books.map((book: IBook, i: number) => (
+                <ListGroupItem key={i}>
+                  <StarFill
+                    color="gold"
+                    size={20}
+                    className="me-4 my-auto"
+                    onClick={() => removeFromFav(book)}
+                  />
+                  <span>{book.name}</span>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default connect((s) => s, mapDispatchToProps)(Favourites);
