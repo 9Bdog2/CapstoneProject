@@ -6,6 +6,14 @@ import { removeFromFav } from "../store/actions";
 import { IBook } from "../types/IBook";
 import { StarFill } from "react-bootstrap-icons";
 
+export interface IProps {
+  book: IBook;
+  favouriteData: IBook[];
+  addToFavourites: any;
+  removeFromFavourites: any;
+  data: any;
+}
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   removeFromFav: (book: IBook) => {
     dispatch(removeFromFav(book));
