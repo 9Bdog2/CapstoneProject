@@ -8,10 +8,6 @@ import { StarFill } from "react-bootstrap-icons";
 import { InitialState } from "../store";
 
 export interface IProps {
-  /* book: IBook;
-  favouriteData: IBook[];
-  addToFavourites: any;
-  data: any; */
   removeFromFav: (book: IBook) => void;
   favourites: { data: IBook[] };
 }
@@ -21,9 +17,6 @@ const mapStateToProps = (state: InitialState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  /* removeFromFav: (book: IBook) => {
-    dispatch(removeFromFav(book));
-  }, */
   removeFromFav: (book: IBook) => dispatch(removeFromFav(book)),
 });
 
@@ -39,6 +32,7 @@ const Favourites = ({ favourites, removeFromFav }: IProps) => {
           <Col xs={12}>
             <ListGroup>Favourites</ListGroup>
             <ListGroup>
+                
               {books.map((book: IBook, i: number) => (
                 <ListGroupItem key={i}>
                   <StarFill
