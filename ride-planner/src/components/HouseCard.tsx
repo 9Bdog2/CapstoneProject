@@ -1,5 +1,6 @@
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { IHouse } from "../types/IHouse";
+import IoBookSharp from "react-icons/io";
 
 export interface IProps {
   house: IHouse;
@@ -9,7 +10,7 @@ const CharacterCard = ({ house }: IProps) => {
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2">
       <Card style={{ height: "100%" }}>
-        <Card.Img variant="top" src="" />
+        {/* <IoBookSharp /> */}
         <Card.Body>
           {house.name !== "" && (
             <Card.Title>House Name: {house.name}</Card.Title>
@@ -52,7 +53,7 @@ const CharacterCard = ({ house }: IProps) => {
           {house.diedOut !== "" && (
             <ListGroupItem>House diedOut:{house.diedOut}</ListGroupItem>
           )}
-          {house.ancestralWeapons && (
+          {house.ancestralWeapons !== [] && (
             <ListGroupItem>
               House ancestralWeapons:{house.ancestralWeapons}
             </ListGroupItem>
