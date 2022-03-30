@@ -8,7 +8,7 @@ export interface IProps {
 
 const CharacterCard = ({ house }: IProps) => {
   return (
-    <div className="col-12 col-sm-6 col-md-4 p-2">
+    <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
       <Card style={{ height: "100%" }}>
         {/* <IoBookSharp /> */}
         <Card.Body>

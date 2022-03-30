@@ -1,4 +1,11 @@
-import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Card,
+} from "react-bootstrap";
 import Home from "./Home";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
@@ -22,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const Favourites = ({ favourites, removeFromFav }: IProps) => {
   const books: IBook[] = favourites ? favourites.data : [];
-  console.log("BOOK IS", books);
+  /* console.log("BOOK IS", books); */
 
   return (
     <>
@@ -30,18 +37,22 @@ const Favourites = ({ favourites, removeFromFav }: IProps) => {
       <Container>
         <Row>
           <Col xs={12}>
-            <ListGroup>Favourites</ListGroup>
+            <ListGroup>Favourites Items </ListGroup>
             <ListGroup>
-                
               {books.map((book: IBook, i: number) => (
-                <ListGroupItem key={i}>
-                  <StarFill
-                    color="gold"
-                    size={20}
-                    className="me-4 my-auto"
-                    onClick={() => removeFromFav(book)}
-                  />
-                  <span>{book.name}</span>
+                <ListGroupItem key={i} className="my-1">
+                  <div>
+                    <StarFill
+                      color="gold"
+                      size={20}
+                      className="me-4 my-auto"
+                      onClick={() => removeFromFav(book)}
+                    />
+                  </div>
+                  <div>
+                    Book name : {book.name} Url :
+                    <Card.Link href={book.url}>{book.url}</Card.Link>
+                  </div>
                 </ListGroupItem>
               ))}
             </ListGroup>

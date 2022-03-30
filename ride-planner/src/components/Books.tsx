@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Home from "./Home";
 import BooksCard from "./BooksCard";
-
-
+import { Spinner } from "react-bootstrap";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   const perPage = 12;
 
@@ -37,16 +37,21 @@ const Books = () => {
 
   useEffect(() => {
     fetchedBooks();
+    setLoading(false);
   }, [page]);
 
   return (
     <div>
       <Home />
       <div className="container p-3">
-        <div className="row m-0">
-          {books.map((book, index) => (
-            <BooksCard book={book} key={index} />
-          ))}
+        <div className="row m-0 justify-content-center">
+          {isLoading ? (
+            <Spinner animation="border" role="status">
+              <span className="sr-only ">Loading...</span>
+            </Spinner>
+          ) : (
+            books.map((book, index) => <BooksCard book={book} key={index} />)
+          )}
         </div>
         <div className="col-12 py-2">
           <h6>Page {page}</h6>
