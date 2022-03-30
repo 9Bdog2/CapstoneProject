@@ -5,24 +5,31 @@ import { Dispatch } from "redux";
 import { removeFromFav } from "../store/actions";
 import { IBook } from "../types/IBook";
 import { StarFill } from "react-bootstrap-icons";
+import { InitialState } from "../store";
 
 export interface IProps {
-  book: IBook;
+  /* book: IBook;
   favouriteData: IBook[];
   addToFavourites: any;
-  removeFromFavourites: any;
-  data: any;
+  data: any; */
+  removeFromFav: (book: IBook) => void;
+  favourites: { data: IBook[] };
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  removeFromFav: (book: IBook) => {
-    dispatch(removeFromFav(book));
-  },
+const mapStateToProps = (state: InitialState) => ({
+  favourites: state.favourites,
 });
 
-const Favourites = (data: any) => {
-  const books: IBook[] = data && data.favourites ? data.favourites.data : [];
-  console.log("BOOK IS", books); // book is undefined
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  /* removeFromFav: (book: IBook) => {
+    dispatch(removeFromFav(book));
+  }, */
+  removeFromFav: (book: IBook) => dispatch(removeFromFav(book)),
+});
+
+const Favourites = ({ favourites, removeFromFav }: IProps) => {
+  const books: IBook[] = favourites ? favourites.data : [];
+  console.log("BOOK IS", books);
 
   return (
     <>
@@ -51,4 +58,4 @@ const Favourites = (data: any) => {
   );
 };
 
-export default connect((s) => s, mapDispatchToProps)(Favourites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favourites);
