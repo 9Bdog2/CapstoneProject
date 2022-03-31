@@ -37,7 +37,6 @@ const Favourites = ({ favourites, removeFromFav }: IProps) => {
       <Container>
         <Row>
           <Col xs={12}>
-            <ListGroup>Favourites Items </ListGroup>
             <ListGroup>
               {books.map((book: IBook, i: number) => (
                 <ListGroupItem key={i} className="my-1">
