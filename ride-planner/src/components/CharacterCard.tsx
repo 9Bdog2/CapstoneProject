@@ -12,13 +12,13 @@ const CharacterCard = ({ character }: IProps) => {
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>
-            Character Aliases : <strong>{character.aliases}</strong>
+            Character Name : <strong>{character.name}</strong>
           </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
           {character.name !== "" && (
             <ListGroupItem>
-              Character Name : <strong>{character.name}</strong>
+              Character Aliases : <strong>{character.aliases}</strong>
             </ListGroupItem>
           )}
           {character.gender !== "" && (
@@ -48,17 +48,26 @@ const CharacterCard = ({ character }: IProps) => {
           )}
           {character.aliases && (
             <ListGroupItem>
-              Character Father : <strong>{character.father}</strong>
+              Character Father :
+              <Card.Link href={character.father}>
+                <strong>{character.father}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.mother && (
             <ListGroupItem>
-              Character Mother : <strong>{character.mother}</strong>
+              Character Mother :{" "}
+              <Card.Link href={character.mother}>
+                <strong>{character.mother}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.spouse && (
             <ListGroupItem>
-              Character Spouse : <strong>{character.spouse}</strong>
+              Character Spouse :
+              <Card.Link href={character.spouse}>
+                <strong>{character.spouse}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.allegiances && (
@@ -86,6 +95,7 @@ const CharacterCard = ({ character }: IProps) => {
           )}
         </ListGroup>
         <Card.Body>
+          Url :
           <Card.Link href={character.url}>
             <strong>{character.url}</strong>
           </Card.Link>

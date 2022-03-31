@@ -21,7 +21,7 @@ const CharacterCard = ({ house }: IProps) => {
             <ListGroupItem>House Region: {house.region}</ListGroupItem>
           )}
           {house.coatOfArms !== "" && (
-            <ListGroupItem>House coatOfArms:{house.coatOfArms}</ListGroupItem>
+            <ListGroupItem>House coat of Arms:{house.coatOfArms}</ListGroupItem>
           )}
           {house.words !== "" && (
             <ListGroupItem>House Words: {house.words}</ListGroupItem>
@@ -35,14 +35,36 @@ const CharacterCard = ({ house }: IProps) => {
           )}
           {house.currentLord !== "" && (
             <ListGroupItem>
-              House CurrentLord: {house.currentLord}
+              <div className="houseCard_elements">
+                <span> House CurrentLord:</span>
+                <span>
+                  <Card.Link href={house.currentLord}>
+                    {house.currentLord}
+                  </Card.Link>
+                </span>
+              </div>
             </ListGroupItem>
           )}
           {house.heir !== "" && (
-            <ListGroupItem>House heir:{house.heir}</ListGroupItem>
+            <ListGroupItem>
+              <div className="houseCard_elements">
+                <span> House heir:</span>
+                <span>
+                  {" "}
+                  <Card.Link href={house.heir}>{house.heir}</Card.Link>
+                </span>
+              </div>
+            </ListGroupItem>
           )}
           {house.overlord !== "" && (
-            <ListGroupItem>House overlord:{house.overlord}</ListGroupItem>
+            <ListGroupItem>
+              <div className="houseCard_elements">
+                <span>House overlord:</span>
+                <span>
+                  <Card.Link href={house.overlord}>{house.overlord}</Card.Link>
+                </span>
+              </div>
+            </ListGroupItem>
           )}
           {house.founded !== "" && (
             <ListGroupItem>House founded:{house.founded}</ListGroupItem>
@@ -58,19 +80,28 @@ const CharacterCard = ({ house }: IProps) => {
               House ancestralWeapons:{house.ancestralWeapons}
             </ListGroupItem>
           )}
-          {house.cadetBranches && (
+          {house.cadetBranches !== [] && (
             <ListGroupItem>
               House cadetBranches:{house.cadetBranches}
             </ListGroupItem>
           )}
           {house.swornMembers && (
             <ListGroupItem>
-              House swornMembers:{house.swornMembers}
+              <div className="houseCard_elements">
+                <span>House swornMembers:</span>
+                <span>
+                  <ul>
+                    {house.swornMembers.map((e, i) => (
+                      <li key={i}>{<Card.Link href={e}>{e}</Card.Link>}</li>
+                    ))}
+                  </ul>
+                </span>
+              </div>
             </ListGroupItem>
           )}
         </ListGroup>
         <Card.Body>
-          <Card.Link href={house.url}>{house.url}</Card.Link>
+          Url :<Card.Link href={house.url}>{house.url}</Card.Link>
         </Card.Body>
       </Card>
     </div>
