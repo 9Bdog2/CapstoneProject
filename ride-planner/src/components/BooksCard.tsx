@@ -36,15 +36,15 @@ const BooksCard = ({
   console.log(isFav, favouriteData);
   const toggleFavourite = (book: IBook) => {
     isFav > 0 ? removeFromFavourites(book) : addToFavourites(book);
-    console.log(book);
+    /* console.log(book); */
   };
 
   return (
-    <div className="col-12 col-sm-6 col-md-4 p-2">
+    <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
       <Card style={{ height: "100%" }}>
         <Card.Img variant="top" src="" />
         <Card.Body>
-          <Col xs={3} className="d-flex">
+          <Col xs={3} className="d-flex col-12 justify-content-center">
             {isFav ? (
               <StarFill
                 color="gold"
@@ -61,27 +61,31 @@ const BooksCard = ({
               />
             )}
           </Col>
-          {book.name !== "" && <Card.Title>{book.name}</Card.Title>}
+          {book.name !== "" && <Card.Title>Book Name : {book.name}</Card.Title>}
           {book.authors && <Card.Text>{book.authors[0]}</Card.Text>}
         </Card.Body>
         <ListGroup className="list-group-flush">
-          {book.country !== "" && <ListGroupItem>{book.country}</ListGroupItem>}
-          {book.isbn !== "" && <ListGroupItem>{book.isbn}</ListGroupItem>}
+          {book.country !== "" && (
+            <ListGroupItem>Book Country : {book.country}</ListGroupItem>
+          )}
+          {book.isbn !== "" && (
+            <ListGroupItem>Book ISBN : {book.isbn}</ListGroupItem>
+          )}
           {book.mediaType !== "" && (
-            <ListGroupItem>{book.mediaType}</ListGroupItem>
+            <ListGroupItem>Book Media Type : {book.mediaType}</ListGroupItem>
           )}
           {book.numberOfPages && (
-            <ListGroupItem>{book.numberOfPages}</ListGroupItem>
+            <ListGroupItem>Book Pages : {book.numberOfPages}</ListGroupItem>
           )}
           {book.publisher !== "" && (
-            <ListGroupItem>{book.publisher}</ListGroupItem>
+            <ListGroupItem>Book Publisher : {book.publisher}</ListGroupItem>
           )}
           {book.released !== "" && (
-            <ListGroupItem>{book.released}</ListGroupItem>
+            <ListGroupItem>Book Release : {book.released}</ListGroupItem>
           )}
         </ListGroup>
         <Card.Body>
-          <Card.Link href={book.url}>{book.url}</Card.Link>
+          Book Url :<Card.Link href={book.url}> {book.url}</Card.Link>
         </Card.Body>
       </Card>
     </div>

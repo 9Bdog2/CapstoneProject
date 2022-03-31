@@ -1,6 +1,13 @@
 import Home from "./Home";
 import { useState, useEffect } from "react";
-import { InputGroup, FormControl } from "react-bootstrap";
+import {
+  InputGroup,
+  FormControl,
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Col,
+} from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { ICharacter } from "../types/ICharacter";
 import { IHouse } from "../types/IHouse";
@@ -22,7 +29,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setBooks(data);
-        console.log("Books", data);
+        /* console.log("Books", data); */
       }
     } catch (error) {
       console.log(error);
@@ -37,7 +44,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setCharacters(data);
-        console.log("Characters", data);
+        /* console.log("Characters", data); */
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +59,7 @@ const Search = () => {
       if (response.ok) {
         const data = await response.json();
         setHouses(data);
-        console.log("Houses", data);
+        /*  console.log("Houses", data); */
       }
     } catch (error) {
       console.log(error);
@@ -67,7 +74,7 @@ const Search = () => {
 
   useEffect(() => {
     setBigData([...books, ...characters, ...houses]);
-    console.log("All of them", bigData);
+    /* console.log("All of them", bigData); */
   }, [books, characters, houses]);
 
   return (
@@ -82,30 +89,41 @@ const Search = () => {
               </InputGroup.Prepend>
               <FormControl
                 aria-label="Search GOT"
+                placeholder="Search Houses, Characters and Books"
                 onChange={(event) => setQuery(event.target.value)}
               />
             </InputGroup>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12 mt-5 search-area">
-            {bigData
-              .filter((data) => {
-                if (query === "") {
-                  return "";
-                } else if (
-                  data.name.toLowerCase().includes(query.toLowerCase())
-                ) {
-                  return data;
-                }
-              })
-              .map((data, index) => (
-                <div key={index} className="box-search-content">
-                  <p>Name: {data.name}</p>
-                  <p>URL: {data.url}</p>
+          {bigData
+            .filter((data) => {
+              if (query === "") {
+                return "";
+              } else if (
+                data.name.toLowerCase().includes(query.toLowerCase())
+              ) {
+                return data;
+              }
+            })
+            .map((data, index) => (
+              <div
+                key={index}
+                className="col-12 col-sm-6 col-md-4 p-2 mt-5 p-1 search-area"
+              >
+                <div className="box-search-content ">
+                  <Card style={{ height: "100%" }}>
+                    <Card.Body>
+                      {data.name !== "" && <Card.Title>{data.name}</Card.Title>}
+                    </Card.Body>
+                    <ListGroup className="list-group-flush"></ListGroup>
+                    <Card.Body>
+                      Url :<Card.Link href={data.url}> {data.url}</Card.Link>
+                    </Card.Body>
+                  </Card>
                 </div>
-              ))}
-          </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

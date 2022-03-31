@@ -10,32 +10,34 @@ class Home extends Component {
           defaultActiveKey="/home"
           className="bg-dark justify-content-center"
         >
-          <Nav.Item as="li" className="menu_item">
-            <Nav.Link href="/">Homepage</Nav.Link>
+          <Nav.Item as="li">
+            <Nav.Link href="/" className="menu_item">
+              Homepage
+            </Nav.Link>
           </Nav.Item>
-          <Nav.Item as="li" className="menu_item">
-            <Link to="/books">
-              <div className="nav-link">Books</div>
+          <Nav.Item as="li">
+            <Link to="/books" className="nav-link menu_item">
+              Books
             </Link>
           </Nav.Item>
-          <Nav.Item as="li" className="menu_item">
-            <Link to="/houses">
-              <div className="nav-link">Houses</div>
+          <Nav.Item as="li">
+            <Link to="/houses" className="nav-link menu_item">
+              Houses
             </Link>
           </Nav.Item>
-          <Nav.Item as="li" className="menu_item">
-            <Link to="/characters">
-              <div className="nav-link">Characters</div>
+          <Nav.Item as="li">
+            <Link to="/characters" className="nav-link menu_item">
+              Characters
             </Link>
           </Nav.Item>
-          <Nav.Item as="li" className="menu_item">
-            <Link to="/search">
-              <div className="nav-link">Search</div>
+          <Nav.Item as="li">
+            <Link to="/search" className="nav-link menu_item">
+              Search
             </Link>
           </Nav.Item>
-          <Nav.Item as="li" className="menu_item">
-            <Link to="/favourites">
-              <div className="nav-link">Favourites</div>
+          <Nav.Item as="li">
+            <Link to="/favourites" className="nav-link menu_item">
+              Favourites
             </Link>
           </Nav.Item>
         </Nav>

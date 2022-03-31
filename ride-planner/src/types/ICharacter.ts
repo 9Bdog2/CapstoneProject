@@ -10,10 +10,9 @@ export interface ICharacter {
   father: string;
   mother: string;
   spouse: string;
-  allegiances: string[];
+  allegiances: string;
   books: string[];
   povBooks: string[];
   tvSeries: string[];
   playedBy: string[];
 }
-
