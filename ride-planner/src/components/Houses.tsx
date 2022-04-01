@@ -44,8 +44,8 @@ const Houses = () => {
   return (
     <div>
       <Home />
-      <div className="container p-3" id="container">
-        <div className="row m-0 justify-content-center">
+      <div className="container p-3 " id="container">
+        <div className="row m-0 justify-content-center card_body">
           {isLoading ? (
             <Spinner animation="border" role="status">
               <span className="sr-only ">Loading...</span>
