@@ -33,7 +33,7 @@ const BooksCard = ({
   if (hasFavs) {
     isFav = favouriteData.filter((lib) => lib.isbn === book.isbn).length;
   }
-  console.log(isFav, favouriteData);
+  /* console.log(isFav, favouriteData); */
   const toggleFavourite = (book: IBook) => {
     isFav > 0 ? removeFromFavourites(book) : addToFavourites(book);
     /* console.log(book); */

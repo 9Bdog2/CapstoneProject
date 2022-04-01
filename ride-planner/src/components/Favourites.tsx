@@ -5,6 +5,7 @@ import {
   ListGroup,
   ListGroupItem,
   Card,
+  Spinner,
 } from "react-bootstrap";
 import Home from "./Home";
 import { connect } from "react-redux";
@@ -13,6 +14,7 @@ import { removeFromFav } from "../store/actions";
 import { IBook } from "../types/IBook";
 import { StarFill } from "react-bootstrap-icons";
 import { InitialState } from "../store";
+import { useEffect, useState } from "react";
 
 export interface IProps {
   removeFromFav: (book: IBook) => void;
@@ -27,9 +29,24 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   removeFromFav: (book: IBook) => dispatch(removeFromFav(book)),
 });
 
+function favouritesEmpty(favourites: { data: IBook[] }) {
+  return (
+    <>
+      <Home />
+      <div className="d-flex justify-content-center">
+        <h1>There are no Favourites selected</h1>
+      </div>
+    </>
+  );
+}
+
 const Favourites = ({ favourites, removeFromFav }: IProps) => {
   const books: IBook[] = favourites ? favourites.data : [];
   /* console.log("BOOK IS", books); */
+
+  if (books.length === 0) {
+    return favouritesEmpty(favourites);
+  }
 
   return (
     <>
