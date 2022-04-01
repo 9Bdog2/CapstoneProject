@@ -16,7 +16,7 @@ const CharacterCard = ({ character }: IProps) => {
           </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          {character.name !== "" && (
+          {character.aliases !== [""] && (
             <ListGroupItem>
               Character Aliases : <strong>{character.aliases}</strong>
             </ListGroupItem>
@@ -72,10 +72,14 @@ const CharacterCard = ({ character }: IProps) => {
           )}
           {character.allegiances && (
             <ListGroupItem>
-              Character Allegiances:
-              <Card.Link href={character.allegiances}>
-                <strong>{character.allegiances}</strong>
-              </Card.Link>
+              <div className="houseCard_elements">
+                <span>Character Allegiances:</span>
+                <span>
+                  <Card.Link href={character.allegiances}>
+                    <strong>{character.allegiances}</strong>
+                  </Card.Link>
+                </span>
+              </div>
             </ListGroupItem>
           )}
           {character.povBooks && (
@@ -85,12 +89,35 @@ const CharacterCard = ({ character }: IProps) => {
           )}
           {character.tvSeries && (
             <ListGroupItem>
-              Character TvSeries : <strong>{character.tvSeries}</strong>
+              Character TvSeries :
+              <ul>
+                {character.tvSeries.map((e, i) => (
+                  <li key={i}>{e}</li>
+                ))}
+              </ul>
             </ListGroupItem>
           )}
           {character.playedBy && (
             <ListGroupItem>
               Character PlayedBy : <strong>{character.playedBy}</strong>
+            </ListGroupItem>
+          )}
+          {character.books && (
+            <ListGroupItem>
+              Character Books :
+              <ul>
+                {character.books.map((e, i) => (
+                  <li key={i}>
+                    {
+                      <Card.Link href={e}>
+                        <Card.Link href={e}>
+                          <strong>{e}</strong>
+                        </Card.Link>
+                      </Card.Link>
+                    }
+                  </li>
+                ))}
+              </ul>
             </ListGroupItem>
           )}
         </ListGroup>
