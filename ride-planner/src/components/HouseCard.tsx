@@ -8,7 +8,7 @@ export interface IProps {
 
 const CharacterCard = ({ house }: IProps) => {
   return (
-    <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
+    <div className="col-12 col-sm-6 col-md-4 p-2">
       <Card style={{ height: "100%" }}>
         {/* <IoBookSharp /> */}
         <Card.Body>
@@ -26,11 +26,10 @@ const CharacterCard = ({ house }: IProps) => {
           {house.words !== "" && (
             <ListGroupItem>House Words: {house.words}</ListGroupItem>
           )}
-
-          {house.titles && (
+          {house.titles !== [] && (
             <ListGroupItem>House Titles: {house.titles}</ListGroupItem>
           )}
-          {house.seats && (
+          {house.seats !== [] && (
             <ListGroupItem>House Seats: {house.seats}</ListGroupItem>
           )}
           {house.currentLord !== "" && (
@@ -67,23 +66,26 @@ const CharacterCard = ({ house }: IProps) => {
             </ListGroupItem>
           )}
           {house.founded !== "" && (
-            <ListGroupItem>House founded:{house.founded}</ListGroupItem>
+            <ListGroupItem>House Founded: {house.founded}</ListGroupItem>
           )}
           {house.founder !== "" && (
-            <ListGroupItem>House founder:{house.founder}</ListGroupItem>
+            <ListGroupItem>House Founder: {house.founder}</ListGroupItem>
           )}
           {house.diedOut !== "" && (
-            <ListGroupItem>House diedOut:{house.diedOut}</ListGroupItem>
+            <ListGroupItem>House Died Out: {house.diedOut}</ListGroupItem>
           )}
           {house.ancestralWeapons !== [] && (
             <ListGroupItem>
-              House ancestralWeapons:{house.ancestralWeapons}
+              House Ancestral Weapons:{house.ancestralWeapons}
             </ListGroupItem>
           )}
           {house.cadetBranches !== [] && (
             <ListGroupItem>
-              House cadetBranches:{house.cadetBranches}
+              House Cadet Branches:{house.cadetBranches}
             </ListGroupItem>
+          )}
+          {house.words !== "" && (
+            <ListGroupItem>House Words: {house.words}</ListGroupItem>
           )}
           {house.swornMembers && (
             <ListGroupItem>
