@@ -112,14 +112,13 @@ const Search = () => {
                 className="col-12 col-sm-6 col-md-4 p-2 mt-5 p-1 search-area"
               >
                 <div className="box-search-content ">
-                  <Card style={{ height: "100%" }}>
+                  <Card className="houseCard_elements">
                     <Card.Body>
                       {data.name !== "" && <Card.Title>{data.name}</Card.Title>}
                     </Card.Body>
-                    <ListGroup className="list-group-flush"></ListGroup>
-                    <Card.Body>
+                    <ListGroup className="list-group-flush ">
                       Url :<Card.Link href={data.url}> {data.url}</Card.Link>
-                    </Card.Body>
+                    </ListGroup>
                   </Card>
                 </div>
               </div>

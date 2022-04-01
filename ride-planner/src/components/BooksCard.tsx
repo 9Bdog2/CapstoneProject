@@ -80,6 +80,34 @@ const BooksCard = ({
           {book.publisher !== "" && (
             <ListGroupItem>Book Publisher : {book.publisher}</ListGroupItem>
           )}
+          {book.characters !== [] && (
+            <ListGroupItem>
+              <div className="houseCard_elements">
+                <span>Book Characters :</span>
+                <span>
+                  <ul>
+                    {book.characters.map((e, i) => (
+                      <li key={i}>{<Card.Link href={e}>{e}</Card.Link>}</li>
+                    ))}
+                  </ul>
+                </span>
+              </div>
+            </ListGroupItem>
+          )}
+          {book.povCharacters !== [] && (
+            <ListGroupItem>
+              <div className="houseCard_elements">
+                <span>Book Pov Characters :</span>
+                <span>
+                  <ul>
+                    {book.povCharacters.map((e, i) => (
+                      <li key={i}>{<Card.Link href={e}>{e}</Card.Link>}</li>
+                    ))}
+                  </ul>
+                </span>
+              </div>
+            </ListGroupItem>
+          )}
           {book.released !== "" && (
             <ListGroupItem>Book Release : {book.released}</ListGroupItem>
           )}

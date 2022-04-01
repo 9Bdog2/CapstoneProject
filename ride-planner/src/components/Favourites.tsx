@@ -49,8 +49,14 @@ const Favourites = ({ favourites, removeFromFav }: IProps) => {
                     />
                   </div>
                   <div>
-                    Book name : {book.name} Url :
-                    <Card.Link href={book.url}>{book.url}</Card.Link>
+                    <div>
+                      <span>Book name : {book.name}</span>
+                      <span>
+                        <ul>
+                          Url :<Card.Link href={book.url}>{book.url}</Card.Link>
+                        </ul>
+                      </span>
+                    </div>
                   </div>
                 </ListGroupItem>
               ))}

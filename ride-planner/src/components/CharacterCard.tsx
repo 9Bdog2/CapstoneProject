@@ -12,13 +12,13 @@ const CharacterCard = ({ character }: IProps) => {
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>
-            Character Aliases : <strong>{character.aliases}</strong>
+            Character Name : <strong>{character.name}</strong>
           </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          {character.name !== "" && (
+          {character.aliases !== [""] && (
             <ListGroupItem>
-              Character Name : <strong>{character.name}</strong>
+              Character Aliases : <strong>{character.aliases}</strong>
             </ListGroupItem>
           )}
           {character.gender !== "" && (
@@ -48,25 +48,38 @@ const CharacterCard = ({ character }: IProps) => {
           )}
           {character.aliases && (
             <ListGroupItem>
-              Character Father : <strong>{character.father}</strong>
+              Character Father :
+              <Card.Link href={character.father}>
+                <strong>{character.father}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.mother && (
             <ListGroupItem>
-              Character Mother : <strong>{character.mother}</strong>
+              Character Mother :{" "}
+              <Card.Link href={character.mother}>
+                <strong>{character.mother}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.spouse && (
             <ListGroupItem>
-              Character Spouse : <strong>{character.spouse}</strong>
+              Character Spouse :
+              <Card.Link href={character.spouse}>
+                <strong>{character.spouse}</strong>
+              </Card.Link>
             </ListGroupItem>
           )}
           {character.allegiances && (
             <ListGroupItem>
-              Character Allegiances:
-              <Card.Link href={character.allegiances}>
-                <strong>{character.allegiances}</strong>
-              </Card.Link>
+              <div className="houseCard_elements">
+                <span>Character Allegiances:</span>
+                <span>
+                  <Card.Link href={character.allegiances}>
+                    <strong>{character.allegiances}</strong>
+                  </Card.Link>
+                </span>
+              </div>
             </ListGroupItem>
           )}
           {character.povBooks && (
@@ -76,7 +89,12 @@ const CharacterCard = ({ character }: IProps) => {
           )}
           {character.tvSeries && (
             <ListGroupItem>
-              Character TvSeries : <strong>{character.tvSeries}</strong>
+              Character TvSeries :
+              <ul>
+                {character.tvSeries.map((e, i) => (
+                  <li key={i}>{e}</li>
+                ))}
+              </ul>
             </ListGroupItem>
           )}
           {character.playedBy && (
@@ -84,8 +102,27 @@ const CharacterCard = ({ character }: IProps) => {
               Character PlayedBy : <strong>{character.playedBy}</strong>
             </ListGroupItem>
           )}
+          {character.books && (
+            <ListGroupItem>
+              Character Books :
+              <ul>
+                {character.books.map((e, i) => (
+                  <li key={i}>
+                    {
+                      <Card.Link href={e}>
+                        <Card.Link href={e}>
+                          <strong>{e}</strong>
+                        </Card.Link>
+                      </Card.Link>
+                    }
+                  </li>
+                ))}
+              </ul>
+            </ListGroupItem>
+          )}
         </ListGroup>
         <Card.Body>
+          Url :
           <Card.Link href={character.url}>
             <strong>{character.url}</strong>
           </Card.Link>
