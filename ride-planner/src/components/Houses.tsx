@@ -38,6 +38,7 @@ const Houses = () => {
   useEffect(() => {
     fetchedHouses();
     setLoading(false);
+    console.log(houses);
   }, [page]);
 
   return (
