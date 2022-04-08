@@ -17,9 +17,7 @@ const Search = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [houses, setHouses] = useState<IHouse[]>([]);
-  const [bigData, setBigData] = useState<Array<IBook | ICharacter | IHouse>>(
-    []
-  );
+  const [bigData, setBigData] = useState<Array<IBook | IHouse>>([]);
 
   const fetchedBooks = async () => {
     try {
@@ -30,21 +28,6 @@ const Search = () => {
         const data = await response.json();
         setBooks(data);
         /* console.log("Books", data); */
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchedCharacters = async () => {
-    try {
-      const response = await fetch(
-        "https://www.anapioficeandfire.com/api/characters?page=1&pageSize=50"
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setCharacters(data);
-        /* console.log("Characters", data); */
       }
     } catch (error) {
       console.log(error);
@@ -68,12 +51,11 @@ const Search = () => {
 
   useEffect(() => {
     fetchedBooks();
-    fetchedCharacters();
     fetchedHouses();
   }, []);
 
   useEffect(() => {
-    setBigData([...books, ...characters, ...houses]);
+    setBigData([...books, ...houses]);
     /* console.log("All of them", bigData); */
   }, [books, characters, houses]);
 

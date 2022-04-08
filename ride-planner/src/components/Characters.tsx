@@ -9,18 +9,14 @@ const Characters = () => {
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const perPage = 12;
+  const perPage = 53;
 
   const fetchedCharacters = async () => {
     try {
-      const response = await fetch(
-        "https://www.anapioficeandfire.com/api/characters?page=" +
-          page +
-          "&pageSize=" +
-          (perPage + 1)
-      );
+      const response = await fetch("https://thronesapi.com/api/v2/Characters");
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setHasMore(data.length > perPage);
         setCharacters(data.slice(0, perPage));
         scrollTop();
