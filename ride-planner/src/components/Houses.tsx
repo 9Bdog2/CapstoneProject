@@ -12,6 +12,7 @@ const Houses = () => {
   const perPage = 12;
 
   const fetchedHouses = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         "https://www.anapioficeandfire.com/api/houses?page=" +
@@ -27,6 +28,8 @@ const Houses = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,7 +40,6 @@ const Houses = () => {
 
   useEffect(() => {
     fetchedHouses();
-    setLoading(false);
   }, [page]);
 
   return (

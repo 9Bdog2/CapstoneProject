@@ -12,6 +12,7 @@ const Characters = () => {
   const perPage = 53;
 
   const fetchedCharacters = async () => {
+    setLoading(true);
     try {
       const response = await fetch("https://thronesapi.com/api/v2/Characters");
       if (response.ok) {
@@ -23,6 +24,8 @@ const Characters = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,7 +36,6 @@ const Characters = () => {
 
   useEffect(() => {
     fetchedCharacters();
-    setLoading(false);
   }, [page]);
 
   return (

@@ -1,10 +1,18 @@
-import { Card, ListGroup, ListGroupItem, Col } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { addToFav, removeFromFav } from "../store/actions";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { InitialState } from "../store";
+import { useEffect, useState } from "react";
 
 export interface IProps {
   book: IBook;
@@ -28,6 +36,8 @@ const BooksCard = ({
   addToFavourites,
   removeFromFavourites,
 }: IProps) => {
+  const [comment, setComment] = useState({});
+
   const hasFavs = favouriteData.length > 0 ? true : false;
   let isFav = 0;
   if (hasFavs) {
@@ -38,6 +48,44 @@ const BooksCard = ({
     isFav > 0 ? removeFromFavourites(book) : addToFavourites(book);
     /* console.log(book); */
   };
+
+  const fetchBookComments = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/book_comments?bookId=${book.isbn}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createBookComment = async () => {
+    let commentObj = { ...comment, id: "2187432198413", bookId: book.isbn };
+    try {
+      const response = await fetch("http://localhost:3000/book_comments", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(commentObj),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookComments();
+  });
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
@@ -115,6 +163,32 @@ const BooksCard = ({
         <Card.Body>
           Book Url :<Card.Link href={book.url}> {book.url}</Card.Link>
         </Card.Body>
+        <Form>
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              name="title"
+              size="lg"
+              type="text"
+              placeholder="Large text"
+              onChange={(e) =>
+                setComment({ ...comment, title: e.target.value })
+              }
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Comment</Form.Label>
+            <Form.Control
+              name="body"
+              as="textarea"
+              rows={3}
+              onChange={(e) => setComment({ ...comment, body: e.target.value })}
+            />
+          </Form.Group>
+          <Button type="button" onClick={(e) => createBookComment()}>
+            Submit
+          </Button>
+        </Form>
       </Card>
     </div>
   );
