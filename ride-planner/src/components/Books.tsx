@@ -12,6 +12,7 @@ const Books = () => {
   const perPage = 12;
 
   const fetchedBooks = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         "https://www.anapioficeandfire.com/api/books?page=" +
@@ -23,10 +24,13 @@ const Books = () => {
         const data = await response.json();
         setHasMore(data.length > perPage);
         setBooks(data.slice(0, perPage));
+
         scrollTop();
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,7 +41,6 @@ const Books = () => {
 
   useEffect(() => {
     fetchedBooks();
-    setLoading(false);
   }, [page]);
 
   return (

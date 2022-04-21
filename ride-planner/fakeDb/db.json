@@ -1,0 +1,34 @@
+{
+  "book_comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 2,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 3,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 299,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "titlu",
+      "body": "safljalsfhalf salihf;lkaf21321 fajlsafna",
+      "id": "2187432198413",
+      "bookId": "978-0553103540"
+    }
+  ]
+}
