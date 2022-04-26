@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { InitialState } from "../store";
 import { useEffect, useState } from "react";
+import uniqid from "uniqid";
 
 export interface IProps {
   book: IBook;
@@ -64,7 +65,7 @@ const BooksCard = ({
   };
 
   const createBookComment = async () => {
-    let commentObj = { ...comment, id: "2187432198413", bookId: book.isbn };
+    let commentObj = { ...comment, id: uniqid(), bookId: book.isbn };
     try {
       const response = await fetch("http://localhost:3000/book_comments", {
         headers: {
@@ -159,6 +160,9 @@ const BooksCard = ({
           {book.released !== "" && (
             <ListGroupItem>Book Release : {book.released}</ListGroupItem>
           )}
+          {/* {data.book_comments !== "" && (
+            <ListGroupItem>Comments : {data.book_comments}</ListGroupItem>
+          )} */}
         </ListGroup>
         <Card.Body>
           Book Url :<Card.Link href={book.url}> {book.url}</Card.Link>
