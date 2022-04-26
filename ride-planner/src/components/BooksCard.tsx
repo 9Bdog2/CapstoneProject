@@ -78,6 +78,7 @@ const BooksCard = ({
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -87,6 +88,8 @@ const BooksCard = ({
   useEffect(() => {
     fetchBookComments();
   });
+
+  
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
