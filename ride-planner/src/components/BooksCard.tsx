@@ -14,6 +14,7 @@ import { Dispatch } from "redux";
 import { InitialState } from "../store";
 import { useEffect, useState } from "react";
 import uniqid from "uniqid";
+import timestamp from "time-stamp";
 
 export interface IProps {
   book: IBook;
@@ -58,7 +59,7 @@ const BooksCard = ({
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        /* console.log(data); */
         setCommentHistory(data);
       }
     } catch (error) {
@@ -67,7 +68,12 @@ const BooksCard = ({
   };
 
   const createBookComment = async () => {
-    let commentObj = { ...comment, id: uniqid(), bookId: book.isbn };
+    let commentObj = {
+      ...comment,
+      id: uniqid(),
+      bookId: book.isbn,
+      createdAt: timestamp("YYYY-MM-DD HH:mm:ss"),
+    };
     try {
       const response = await fetch("http://localhost:3000/book_comments", {
         headers: {
@@ -79,8 +85,8 @@ const BooksCard = ({
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-       /*  window.location.reload(); */
+        /* console.log(data); */
+        /*  window.location.reload(); */
       }
     } catch (error) {
       console.log(error);
@@ -89,7 +95,7 @@ const BooksCard = ({
 
   useEffect(() => {
     fetchBookComments();
-  }, []);
+  }, [commentHistory]);
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
@@ -187,12 +193,15 @@ const BooksCard = ({
             <Form.Label>Comment</Form.Label>
             <ul className="list-group list-group-flush">
               {commentHistory &&
-              commentHistory.map((comment: any) => (
-                <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
-                  <span className="badge badge-dark">{comment.id}</span>
-                  {comment.body}
-                </li>
-              ))}
+                commentHistory.map((comment: any) => (
+                  <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
+                    <span className="badge badge-dark">{comment.title}</span>
+                    <span className="badge badge-dark">
+                      {comment.createdAt}
+                    </span>
+                    <span className="badge badge-dark"> {comment.body}</span>
+                  </li>
+                ))}
             </ul>
             <Form.Control
               name="body"
