@@ -12,21 +12,21 @@ const Characters = () => {
   const perPage = 12;
 
   const fetchedCharacters = async () => {
+    setLoading(true);
     try {
-      const response = await fetch(
-        "https://www.anapioficeandfire.com/api/characters?page=" +
-          page +
-          "&pageSize=" +
-          (perPage + 1)
-      );
+      const response = await fetch("https://thronesapi.com/api/v2/Characters");
       if (response.ok) {
         const data = await response.json();
         setHasMore(data.length > perPage);
         setCharacters(data.slice(0, perPage));
+
+        console.log(characters);
         scrollTop();
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,7 +37,6 @@ const Characters = () => {
 
   useEffect(() => {
     fetchedCharacters();
-    setLoading(false);
   }, [page]);
 
   return (

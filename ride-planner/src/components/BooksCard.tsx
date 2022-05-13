@@ -1,10 +1,20 @@
-import { Card, ListGroup, ListGroupItem, Col } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { addToFav, removeFromFav } from "../store/actions";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { InitialState } from "../store";
+import { useEffect, useState } from "react";
+import uniqid from "uniqid";
+import timestamp from "time-stamp";
 
 export interface IProps {
   book: IBook;
@@ -28,6 +38,9 @@ const BooksCard = ({
   addToFavourites,
   removeFromFavourites,
 }: IProps) => {
+  const [comment, setComment] = useState({});
+  const [commentHistory, setCommentHistory] = useState([]);
+
   const hasFavs = favouriteData.length > 0 ? true : false;
   let isFav = 0;
   if (hasFavs) {
@@ -38,6 +51,51 @@ const BooksCard = ({
     isFav > 0 ? removeFromFavourites(book) : addToFavourites(book);
     /* console.log(book); */
   };
+
+  const fetchBookComments = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/book_comments?bookId=${book.isbn}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        /* console.log(data); */
+        setCommentHistory(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createBookComment = async () => {
+    let commentObj = {
+      ...comment,
+      id: uniqid(),
+      bookId: book.isbn,
+      createdAt: timestamp("YYYY-MM-DD HH:mm:ss"),
+    };
+    try {
+      const response = await fetch("http://localhost:3000/book_comments", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(commentObj),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        /* console.log(data); */
+        /*  window.location.reload(); */
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookComments();
+  }, [commentHistory]);
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
@@ -111,10 +169,51 @@ const BooksCard = ({
           {book.released !== "" && (
             <ListGroupItem>Book Release : {book.released}</ListGroupItem>
           )}
+          {/* {data.book_comments !== "" && (
+            <ListGroupItem>Comments : {data.book_comments}</ListGroupItem>
+          )} */}
         </ListGroup>
         <Card.Body>
           Book Url :<Card.Link href={book.url}> {book.url}</Card.Link>
         </Card.Body>
+        <Form>
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              name="title"
+              size="lg"
+              type="text"
+              placeholder="Large text"
+              onChange={(e) =>
+                setComment({ ...comment, title: e.target.value })
+              }
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Comment</Form.Label>
+            <ul className="list-group list-group-flush">
+              {commentHistory &&
+                commentHistory.map((comment: any) => (
+                  <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
+                    <span className="badge badge-dark">{comment.title}</span>
+                    <span className="badge badge-dark">
+                      {comment.createdAt}
+                    </span>
+                    <span className="badge badge-dark"> {comment.body}</span>
+                  </li>
+                ))}
+            </ul>
+            <Form.Control
+              name="body"
+              as="textarea"
+              rows={3}
+              onChange={(e) => setComment({ ...comment, body: e.target.value })}
+            />
+          </Form.Group>
+          <Button type="button" onClick={(e) => createBookComment()}>
+            Submit
+          </Button>
+        </Form>
       </Card>
     </div>
   );

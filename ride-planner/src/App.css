@@ -82,3 +82,20 @@
 }
 
 /*----------------------------------------*/
+
+/*--------------- Character Card Component -------*/
+
+.image_container {
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+}
+
+img {
+  border-radius: 20px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  max-width: 100%;
+}
+/*-----------------------------------------------*/

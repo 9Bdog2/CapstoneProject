@@ -1,0 +1,90 @@
+{
+  "book_comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 2,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 3,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "id": 299,
+      "body": "some comment",
+      "title": "title",
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "titlu",
+      "body": "fajlsafna",
+      "id": "2187432198413",
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": 7,
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": "l2ga7w7p",
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": "l2gafl80",
+      "bookId": "978-0553103540"
+    },
+    {
+      "title": "1",
+      "body": "1",
+      "id": "l349jphu",
+      "bookId": "978-0553108033"
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": "l349lzsu",
+      "bookId": "978-0553108033"
+    },
+    {
+      "title": "test",
+      "body": "test2",
+      "id": "l349mglr",
+      "bookId": "978-0553108033"
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": "l349s7hc",
+      "bookId": "978-0553106633"
+    },
+    {
+      "title": "test3",
+      "body": "test3",
+      "id": "l349z843",
+      "bookId": "978-0553108033",
+      "createdAt": "2022-05-13 12:06:57"
+    },
+    {
+      "title": "test2",
+      "body": "test2",
+      "id": "l34a3all",
+      "bookId": "978-0553106633",
+      "createdAt": "2022-05-13 12:10:07"
+    }
+  ]
+}
