@@ -38,6 +38,7 @@ const BooksCard = ({
   removeFromFavourites,
 }: IProps) => {
   const [comment, setComment] = useState({});
+  const [commentHistory, setCommentHistory] = useState([]);
 
   const hasFavs = favouriteData.length > 0 ? true : false;
   let isFav = 0;
@@ -58,6 +59,7 @@ const BooksCard = ({
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        setCommentHistory(data);
       }
     } catch (error) {
       console.log(error);
@@ -78,7 +80,7 @@ const BooksCard = ({
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        window.location.reload();
+       /*  window.location.reload(); */
       }
     } catch (error) {
       console.log(error);
@@ -87,9 +89,7 @@ const BooksCard = ({
 
   useEffect(() => {
     fetchBookComments();
-  });
-
-  
+  }, []);
 
   return (
     <div className="col-12 col-sm-6 col-md-4 p-2 card_body">
@@ -185,6 +185,15 @@ const BooksCard = ({
           </Form.Group>
           <Form.Group>
             <Form.Label>Comment</Form.Label>
+            <ul className="list-group list-group-flush">
+              {commentHistory &&
+              commentHistory.map((comment: any) => (
+                <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
+                  <span className="badge badge-dark">{comment.id}</span>
+                  {comment.body}
+                </li>
+              ))}
+            </ul>
             <Form.Control
               name="body"
               as="textarea"
