@@ -5,6 +5,7 @@ import {
   Col,
   Form,
   Button,
+  Modal,
 } from "react-bootstrap";
 import { IBook } from "../types/IBook";
 import { Star, StarFill } from "react-bootstrap-icons";
@@ -38,8 +39,14 @@ const BooksCard = ({
   addToFavourites,
   removeFromFavourites,
 }: IProps) => {
+  /* Comment section */
   const [comment, setComment] = useState({});
   const [commentHistory, setCommentHistory] = useState([]);
+  const [show, setShow] = useState(false);
+
+  /* Modal Logic */
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const hasFavs = favouriteData.length > 0 ? true : false;
   let isFav = 0;
@@ -85,6 +92,7 @@ const BooksCard = ({
       });
       if (response.ok) {
         const data = await response.json();
+
         /* console.log(data); */
         /*  window.location.reload(); */
       }
@@ -169,9 +177,6 @@ const BooksCard = ({
           {book.released !== "" && (
             <ListGroupItem>Book Release : {book.released}</ListGroupItem>
           )}
-          {/* {data.book_comments !== "" && (
-            <ListGroupItem>Comments : {data.book_comments}</ListGroupItem>
-          )} */}
         </ListGroup>
         <Card.Body>
           Book Url :<Card.Link href={book.url}> {book.url}</Card.Link>
@@ -190,19 +195,35 @@ const BooksCard = ({
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Comment</Form.Label>
-            <ul className="list-group list-group-flush">
-              {commentHistory &&
-                commentHistory.map((comment: any) => (
-                  <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
-                    <span className="badge badge-dark">{comment.title}</span>
-                    <span className="badge badge-dark">
-                      {comment.createdAt}
-                    </span>
-                    <span className="badge badge-dark"> {comment.body}</span>
-                  </li>
-                ))}
-            </ul>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Comments</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <ul className="list-group list-group-flush">
+                  {commentHistory &&
+                    commentHistory.map((comment: any) => (
+                      <li className="list-group-item d-flex flex-wrap justify-content-between align-items-center">
+                        <span className="badge badge-dark">
+                          {comment.title}
+                        </span>
+                        <span className="badge badge-dark">
+                          {comment.createdAt}
+                        </span>
+                        <span className="badge badge-dark">
+                          {" "}
+                          {comment.body}
+                        </span>
+                      </li>
+                    ))}
+                </ul>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
             <Form.Control
               name="body"
               as="textarea"
@@ -212,6 +233,9 @@ const BooksCard = ({
           </Form.Group>
           <Button type="button" onClick={(e) => createBookComment()}>
             Submit
+          </Button>
+          <Button variant="primary" onClick={handleShow} className="ml-2">
+            See Comments
           </Button>
         </Form>
       </Card>
