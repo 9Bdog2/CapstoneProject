@@ -16,6 +16,7 @@ import { InitialState } from "../store";
 import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import timestamp from "time-stamp";
+import { useForm } from "react-hook-form";
 
 export interface IProps {
   book: IBook;
@@ -47,6 +48,14 @@ const BooksCard = ({
   /* Modal Logic */
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  /* reset input logic */
+  const { reset, register, handleSubmit } = useForm();
+  const resetInput = () => {
+    /* setComment({}); */
+    /* setCommentHistory([]); */
+    reset(commentHistory);
+    reset(comment);
+  };
 
   const hasFavs = favouriteData.length > 0 ? true : false;
   let isFav = 0;
@@ -188,7 +197,8 @@ const BooksCard = ({
               name="title"
               size="lg"
               type="text"
-              placeholder="Large text"
+              required
+              placeholder="Enter Title"
               onChange={(e) =>
                 setComment({ ...comment, title: e.target.value })
               }
@@ -227,12 +237,31 @@ const BooksCard = ({
             <Form.Control
               name="body"
               as="textarea"
+              required
               rows={3}
-              onChange={(e) => setComment({ ...comment, body: e.target.value })}
+              onChange={(e) => {
+                setComment({ ...comment, body: e.target.value });
+              }}
             />
           </Form.Group>
-          <Button type="button" onClick={(e) => createBookComment()}>
+          <Button
+            type="button"
+            onClick={(e) => {
+              createBookComment();
+              /* reset(commentHistory); */
+              /* resetInput(); */
+            }}
+          >
             Submit
+          </Button>
+          <Button
+            className="ml-2"
+            type="reset"
+            onClick={(e) => {
+              resetInput();
+            }}
+          >
+            Reset
           </Button>
           <Button variant="primary" onClick={handleShow} className="ml-2">
             See Comments
